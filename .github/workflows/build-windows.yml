@@ -65,10 +65,14 @@ jobs:
         run: python mach package
         shell: bash
 
-      - name: Collect artifact
+      - name: Collect and rename artifact
         run: |
-          mkdir -p dist
-          Get-ChildItem -Recurse -Path zen-source/obj-*/dist -Include "*.exe","*.zip","*.msi" | Copy-Item -Destination dist/
+          $src = Get-ChildItem -Recurse -Path zen-source/obj-*/dist -Include "*.exe" | Select-Object -First 1
+          if ($src) { Copy-Item $src.FullName dist/afriverse-alpha-windows.exe }
+          else {
+            $src = Get-ChildItem -Recurse -Path zen-source/obj-*/dist -Include "*.zip" | Select-Object -First 1
+            if ($src) { Copy-Item $src.FullName dist/afriverse-alpha-windows.zip }
+          }
         shell: pwsh
 
       - name: Upload to GitHub Release

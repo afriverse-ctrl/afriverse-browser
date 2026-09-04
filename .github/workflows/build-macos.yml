@@ -57,10 +57,10 @@ jobs:
         working-directory: zen-source
         run: python3 mach package
 
-      - name: Collect artifact
+      - name: Collect and rename artifact
         run: |
           mkdir -p dist
-          find zen-source/obj-*/dist -name "*.dmg" -exec cp {} dist/ \;
+          find zen-source/obj-*/dist -name "*.dmg" | head -1 | xargs -I{} cp {} dist/afriverse-alpha-macos.dmg
           ls dist/
 
       - name: Upload to GitHub Release

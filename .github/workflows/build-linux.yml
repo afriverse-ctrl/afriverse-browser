@@ -61,11 +61,10 @@ jobs:
         working-directory: zen-source
         run: python3 mach package
 
-      - name: Collect artifact
+      - name: Collect and rename artifact
         run: |
           mkdir -p dist
-          find zen-source/obj-*/dist -name "*.tar.bz2" -exec cp {} dist/ \;
-          find zen-source/obj-*/dist -name "*.tar.gz"  -exec cp {} dist/ \;
+          find zen-source/obj-*/dist -name "*.tar.bz2" | head -1 | xargs -I{} cp {} dist/afriverse-alpha-linux.tar.bz2
           ls dist/
 
       - name: Upload to GitHub Release
