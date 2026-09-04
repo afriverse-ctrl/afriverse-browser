@@ -1,0 +1,84 @@
+name: Build — macOS
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+    inputs:
+      zen_version:
+        description: 'Zen source version to build against'
+        default: '1.21.16b'
+        required: false
+
+env:
+  ZEN_VERSION: ${{ github.event.inputs.zen_version || '1.21.16b' }}
+
+jobs:
+  build:
+    runs-on: macos-14        # Apple Silicon runner
+    timeout-minutes: 300
+
+    steps:
+      - name: Checkout afriverse-browser
+        uses: actions/checkout@v4
+
+      - name: Install build dependencies (Homebrew)
+        run: |
+          brew update --quiet
+          brew install python@3.11 nasm yasm cbindgen node llvm pkg-config \
+                       bzip2 openssl@3
+
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Cache Zen source download
+        uses: actions/cache@v4
+        with:
+          path: zen-source
+          key: zen-source-${{ env.ZEN_VERSION }}-macos
+
+      - name: Fetch Zen source
+        run: bash scripts/fetch-zen.sh zen-source
+
+      - name: Apply Afriverse patches
+        run: bash scripts/apply-patches.sh zen-source
+
+      - name: Bootstrap
+        working-directory: zen-source
+        run: python3 mach bootstrap --no-interactive --application-choice browser
+
+      - name: Build
+        working-directory: zen-source
+        run: python3 mach build
+        env:
+          MOZCONFIG: ${{ github.workspace }}/configs/mozconfig
+
+      - name: Package
+        working-directory: zen-source
+        run: python3 mach package
+
+      - name: Collect artifact
+        run: |
+          mkdir -p dist
+          find zen-source/obj-*/dist -name "*.dmg" -exec cp {} dist/ \;
+          ls dist/
+
+      - name: Upload to GitHub Release
+        uses: softprops/action-gh-release@v2
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: dist/*
+          name: Afriverse Alpha ${{ github.ref_name }}
+          body: |
+            Afriverse Alpha — macOS build (Apple Silicon + Intel universal).
+            Based on Zen Browser ${{ env.ZEN_VERSION }} (Gecko/Firefox engine).
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload artifact (non-release runs)
+        uses: actions/upload-artifact@v4
+        if: "!startsWith(github.ref, 'refs/tags/')"
+        with:
+          name: afriverse-alpha-macos
+          path: dist/
+          retention-days: 7

@@ -1,0 +1,31 @@
+--- a/browser/app/profile/zen-default-prefs.js
++++ b/browser/app/profile/zen-default-prefs.js
+@@ -1,6 +1,22 @@
+ // Zen default preferences — Afriverse overrides appended below.
+
++// ── Afriverse defaults ────────────────────────────────────────────────────
++
++// Homepage & new tab
++pref("browser.startup.homepage", "https://hub.afriversedao.org");
++pref("browser.newtabpage.enabled", true);
++pref("browser.newtab.url", "https://hub.afriversedao.org");
++
++// Pre-pin Afriverse as first sidebar panel
++pref("zen.sidebar.panels.order", "[\"afriverse\",\"bookmarks\",\"history\"]");
++pref("zen.sidebar.afriverse.url", "https://hub.afriversedao.org");
++pref("zen.sidebar.afriverse.label", "Afriverse");
++pref("zen.sidebar.afriverse.icon", "chrome://afriverse/content/logo.svg");
++
++// Privacy — no telemetry, no sponsored content
++pref("datareporting.healthreport.uploadEnabled", false);
++pref("datareporting.policy.dataSubmissionEnabled", false);
++pref("browser.newtabpage.activity-stream.showSponsored", false);
++pref("browser.newtabpage.activity-stream.showSponsoredTopSites", false);
++pref("browser.newtabpage.activity-stream.feeds.topsites", false);
++
++// Default search engine (will be configured via search.json)
++pref("browser.search.defaultenginename", "Google");
++
++// First-run: show Afriverse welcome page instead of Mozilla's
++pref("startup.homepage_welcome_url", "https://hub.afriversedao.org/welcome");
++pref("startup.homepage_override_url", "");

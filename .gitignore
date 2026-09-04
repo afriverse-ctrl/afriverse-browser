@@ -1,0 +1,10 @@
+zen-source/
+obj-*/
+dist/
+*.bz2
+*.tar.gz
+*.dmg
+*.exe
+*.zip
+node_modules/
+.DS_Store

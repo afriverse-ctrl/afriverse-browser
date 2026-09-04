@@ -1,0 +1,41 @@
+--- a/browser/branding/zen/locales/en-US/brand.dtd
++++ b/browser/branding/afriverse/locales/en-US/brand.dtd
+@@ -1,8 +1,8 @@
+-<!ENTITY  brandShortName        "Zen">
+-<!ENTITY  brandShorterName      "Zen">
+-<!ENTITY  brandFullName         "Zen Browser">
+-<!ENTITY  brandProductName      "Zen Browser">
+-<!ENTITY  brandParentName       "zen-browser.app">
+-<!ENTITY  vendorShortName       "Zen">
+-<!ENTITY  trademarkInfo         "Zen Browser is a community project.">
++<!ENTITY  brandShortName        "Afriverse">
++<!ENTITY  brandShorterName      "Afriverse">
++<!ENTITY  brandFullName         "Afriverse Alpha">
++<!ENTITY  brandProductName      "Afriverse Alpha">
++<!ENTITY  brandParentName       "afriversedao.org">
++<!ENTITY  vendorShortName       "Afriverse">
++<!ENTITY  trademarkInfo         "Afriverse Alpha — Africa&#x2019;s browser.">
+--- a/browser/branding/zen/locales/en-US/brand.properties
++++ b/browser/branding/afriverse/locales/en-US/brand.properties
+@@ -1,5 +1,5 @@
+-brandShortName=Zen
+-brandFullName=Zen Browser
+-brandProductName=Zen Browser
+-vendorShortName=Zen
+-homePageSingleStartMain=https://www.mozilla.org/%LOCALE%/firefox/central/
++brandShortName=Afriverse
++brandFullName=Afriverse Alpha
++brandProductName=Afriverse Alpha
++vendorShortName=Afriverse
++homePageSingleStartMain=https://hub.afriversedao.org
+--- a/browser/branding/zen/configure.sh
++++ b/browser/branding/afriverse/configure.sh
+@@ -1,4 +1,4 @@
+-MOZ_APP_BASENAME=Zen
+-MOZ_APP_VENDOR=Zen
+-MOZ_APP_NAME=zen
+-MOZ_APP_PROFILE=zen
++MOZ_APP_BASENAME=Afriverse
++MOZ_APP_VENDOR=Afriverse
++MOZ_APP_NAME=afriverse
++MOZ_APP_PROFILE=afriverse

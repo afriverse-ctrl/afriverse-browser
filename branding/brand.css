@@ -1,0 +1,9 @@
+/* Afriverse Alpha — global brand token overrides for browser chrome */
+:root {
+  --zen-primary-color: #10b981;
+  --zen-primary-color-hover: #059669;
+  --zen-accent: #34d399;
+  --zen-toolbar-background: #0f172a;
+  --zen-sidebar-background: #1e293b;
+  --zen-border-color: #334155;
+}
