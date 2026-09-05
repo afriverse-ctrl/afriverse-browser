@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="afriverse_primary">#10b981</color>
+    <color name="afriverse_primary_hover">#059669</color>
+    <color name="afriverse_accent">#34d399</color>
+    <color name="afriverse_toolbar_background">#0f172a</color>
+    <color name="afriverse_sidebar_background">#1e293b</color>
+    <color name="afriverse_border">#334155</color>
+    <color name="afriverse_text">#f8fafc</color>
+    <color name="afriverse_text_muted">#94a3b8</color>
+    <color name="afriverse_url_bar_bg">#1e293b</color>
+</resources>

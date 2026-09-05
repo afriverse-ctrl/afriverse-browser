@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/afriverse_toolbar_background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp"
+        android:gravity="center_vertical"
+        android:background="@color/afriverse_toolbar_background">
+
+        <EditText
+            android:id="@+id/urlBar"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:inputType="textUri"
+            android:imeOptions="actionGo"
+            android:singleLine="true"
+            android:background="@drawable/url_bar_bg"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="10dp"
+            android:textColor="@color/afriverse_text"
+            android:textColorHint="@color/afriverse_text_muted"
+            android:textSize="14sp"
+            android:hint="Search or type a URL" />
+
+        <ImageButton
+            android:id="@+id/reloadBtn"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="8dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@android:drawable/ic_menu_rotate"
+            android:contentDescription="Reload"
+            app:tint="@color/afriverse_primary"
+            xmlns:app="http://schemas.android.com/apk/res-auto" />
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:progress="0"
+        android:max="100"
+        android:visibility="gone"
+        android:progressTint="@color/afriverse_accent" />
+
+    <org.mozilla.geckoview.GeckoView
+        android:id="@+id/geckoView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+</LinearLayout>

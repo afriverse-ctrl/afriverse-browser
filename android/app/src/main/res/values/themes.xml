@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.Afriverse" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/afriverse_primary</item>
+        <item name="colorPrimaryVariant">@color/afriverse_primary_hover</item>
+        <item name="colorSecondary">@color/afriverse_accent</item>
+        <item name="android:statusBarColor">@color/afriverse_toolbar_background</item>
+        <item name="android:navigationBarColor">@color/afriverse_toolbar_background</item>
+        <item name="android:windowBackground">@color/afriverse_toolbar_background</item>
+    </style>
+</resources>
