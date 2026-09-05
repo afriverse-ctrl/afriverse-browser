@@ -8,7 +8,7 @@ val geckoViewVersion: String = (project.findProperty("geckoViewVersion") as Stri
 
 android {
     namespace = "org.afriverse.browser"
-    compileSdk = 36
+    compileSdk = 37
 
     defaultConfig {
         applicationId = "org.afriverse.browser"
