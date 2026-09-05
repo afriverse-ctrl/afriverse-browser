@@ -4,11 +4,11 @@ plugins {
 }
 
 val geckoViewVersion: String = (project.findProperty("geckoViewVersion") as String?)
-    ?: "133.0.20241111180444"
+    ?: "153.0.20260810162159"
 
 android {
     namespace = "org.afriverse.browser"
-    compileSdk = 37
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "org.afriverse.browser"

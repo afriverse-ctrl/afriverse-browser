@@ -23,7 +23,7 @@ jobs:
       - name: Set up Android SDK
         uses: android-actions/setup-android@v3
         with:
-          packages: 'platforms;android-37 build-tools;37.0.0 platform-tools'
+          packages: 'platforms;android-36 build-tools;36.0.0 platform-tools'
 
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v3
@@ -34,16 +34,17 @@ jobs:
         run: |
           set -euo pipefail
           META=$(curl -fsSL https://maven.mozilla.org/maven2/org/mozilla/geckoview/geckoview/maven-metadata.xml)
-          VERSION=$(echo "$META" | sed -n 's:.*<latest>\(.*\)</latest>.*:\1:p')
+          # Cap at 153.x — GeckoView 154+ requires compileSdk 37 (not yet available in CI)
+          VERSION=$(echo "$META" | grep -oE '<version>[^<]+' | sed 's/<version>//' | grep '^15[0-3]\.' | tail -1)
           if [ -z "$VERSION" ]; then
-            VERSION=$(echo "$META" | grep -oE '<version>[^<]+' | tail -1 | sed 's/<version>//')
+            VERSION="153.0.20260810162159"
           fi
           echo "GeckoView version: $VERSION"
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
 
       - name: Generate Gradle wrapper
         working-directory: android
-        run: gradle wrapper --gradle-version 8.11.1 --no-daemon
+        run: gradle wrapper --gradle-version 8.9 --no-daemon
 
       - name: Create release keystore
         working-directory: android
